@@ -1,0 +1,25 @@
+.ListViewer input {
+  position: relative;
+  /* bottom: -3px; */
+  border: 4px solid lightblue;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  z-index: 0;
+  padding: 5px;
+}
+
+.ListViewer a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: blueviolet;
+  display: inline-block;
+}
+
+.ListViewer-item {
+  position: relative;
+  border: 3px solid lightblue;
+  border-radius: 5px;
+  margin: 0px auto;
+  width: 300px;
+  /* text-align: left; */
+}

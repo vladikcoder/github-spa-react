@@ -1,0 +1,29 @@
+.LikeSetter {
+  position: absolute;
+  line-height: 25px;
+  top: 0;
+  bottom: 0;
+  height: 26px;
+  right: 10px;
+  margin: auto;
+  padding: 3px;
+}
+
+.LikeSetter-up {
+  color: green;
+  font-size: 1.2em;
+}
+
+.LikeSetter-down {
+  color: red;
+  font-size: 1.5em;
+  padding: 0 3px;
+}
+
+.LikeSetter-up:hover,
+.LikeSetter-down:hover {
+  background: lightblue;
+  border-radius: 20%;
+  color: grey;
+  cursor: pointer;
+}
