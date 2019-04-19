@@ -1,6 +1,6 @@
-import React from "react";
-import LikesContext from "./LikesContext";
-import "./LikeSetter.css";
+import React from 'react';
+import LikesContext from './LikesContext';
+import './LikeSetter.css';
 
 const LikeSetter = ({repoName}) => {
   return (
@@ -10,23 +10,23 @@ const LikeSetter = ({repoName}) => {
 
         return (
 
-            <span className="LikeSetter">
-              <b className="LikeSetter-up" onClick={ (event) => {
+          <span className="LikeSetter">
+              <b className="LikeSetter-up" onClick={(event) => {
                 updateHandler(event, true, repoName, updateServerHandler);
               }}>
                 +
               </b>
 
-                {` ${likeStats[repoName] || 0} `}
+            {` ${likeStats[repoName] || 0} `}
 
-              <b className="LikeSetter-down" onClick={(event) => {
-                updateHandler(event, false, repoName, updateServerHandler)
-              }}>
+            <b className="LikeSetter-down" onClick={(event) => {
+              updateHandler(event, false, repoName, updateServerHandler);
+            }}>
                 -
               </b>
             </span>
 
-        )
+        );
       }}
     </LikesContext.Consumer>
   );

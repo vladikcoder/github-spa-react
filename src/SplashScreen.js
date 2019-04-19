@@ -1,14 +1,21 @@
-import React from "react";
+import React from 'react';
+import ghLogo from './img/gh-logo.png';
+
+let splashStyle = {
+  margin: '100px 0'
+};
 
 const SplashScreen = () => {
   return (
-    <div>
+    <div style={splashStyle}>
       <img
-        src="https://png2.kisspng.com/sh/41dd9e1c79f563e4713a052e7001ae50/L0KzQYm3U8IxN5JqiZH0aYP2gLBuTfdqfJl6ep9raYTlhbTyhgQubpD3g598b3b3h7L5hb1zbaF0i9t9b4L8PbrqjB50NZd0ip9CaX7nf8j6TfdqfJl6ep91b3fyPYbogsBnaZVqfKIAZEC4Poa6WMc0P2I8Sac7MUW3R4qCWMg2O2YziNDw/kisspng-github-bitbucket-fork-software-repository-icons-for-windows-github-logo-5ab0faded05d05.5387371715215479988535.png"
+        max-width="300px"
+        width="30%"
+        src={ghLogo}
         alt="github-logo"
       />
       <h1>GitHub App</h1>
-      <p>by Polyakov Vladyslav</p>
+      <p><i>by Polyakov Vladyslav</i></p>
     </div>
   );
 };

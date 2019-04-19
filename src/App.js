@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import React, {Component} from 'react';
+import {Switch, Route} from 'react-router-dom';
 
-import SplashScreen from "./SplashScreen";
-import ReposListViewer from "./ReposListViewer";
-import RepoDetails from "./RepoDetails";
-import LikesContext from "./LikesContext";
+import SplashScreen from './SplashScreen';
+import ReposListViewer from './ReposListViewer';
+import RepoDetails from './RepoDetails';
+import LikesContext from './LikesContext';
 
 class App extends Component {
   state = {
@@ -17,23 +17,36 @@ class App extends Component {
     this.getReposList();
     this.getLikesFromServer();
     setTimeout(() => {
-      this.setState({ isSplash: false });
+      this.setState({isSplash: false});
     }, 3000);
-
+    this.getReposList = this.getReposList.bind(this);
+    this.getReposByQuery = this.getReposByQuery.bind(this);
   }
 
   async getReposList() {
-    let response = await fetch("https://api.github.com/users/vladikcoder/repos");
+    let sinceRandom = Math.floor(Math.random() * 182000000);
+    let response = await fetch(`https://api.github.com/repositories?since=${sinceRandom}`);
     let reposList = await response.json();
+    reposList = reposList.slice(0, 20);
 
-    this.setState({ reposList });
+    this.setState({reposList});
+  }
+
+  async getReposByQuery(query) {
+    let response = await fetch(`https://api.github.com/search/repositories?q=${query}+in:name&per_page=20`);
+    let reposList = await response.json();
+    reposList = reposList.items;
+
+    this.setState({reposList});
+
+    return reposList.length;
   }
 
   async getLikesFromServer() {
-    let response =  await fetch('http://localhost:5000/api/likestats');
+    let response = await fetch('http://localhost:5000/api/likestats');
     let likeStats = await response.json();
 
-    this.setState({ likeStats });
+    this.setState({likeStats});
   }
 
   async updateLikesOnServer() {
@@ -46,7 +59,7 @@ class App extends Component {
   };
 
   render() {
-    let { isSplash, reposList, likeStats } = this.state;
+    let {isSplash, reposList, likeStats} = this.state;
 
     let contextValue = {
       likeStats,
@@ -67,7 +80,7 @@ class App extends Component {
             ...prevState,
             likeStats: newLikeStats
           };
-        })
+        });
       },
 
       updateServerHandler: async (likeStats) => {
@@ -75,7 +88,10 @@ class App extends Component {
           method: 'POST',
           body: JSON.stringify(likeStats)
         });
-      }
+      },
+
+      getReposHandler: this.getReposList,
+      getByQueryHandler: this.getReposByQuery
 
     };
 
@@ -83,7 +99,7 @@ class App extends Component {
       <LikesContext.Provider value={contextValue}>
         <div className="App">
           {isSplash ? (
-            <SplashScreen />
+            <SplashScreen/>
           ) : (
             <Switch>
               <Route
@@ -98,8 +114,8 @@ class App extends Component {
               />
 
               <Route
-                path="/details/:reponame"
-                render={props => <RepoDetails {...props} reposList={reposList} />}
+                path="/details/:owner/:repository"
+                render={props => <RepoDetails {...props} reposList={reposList}/>}
               />
             </Switch>
           )}

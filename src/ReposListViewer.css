@@ -1,25 +1,116 @@
-.ListViewer input {
+body {
+  margin: 0;
+  background: whitesmoke;
+}
+
+.ListViewer {
+  background: whitesmoke;
+  width: 600px;
+  margin: 0 auto;
+  padding: 1px 20px 15px 30px;
+}
+
+.ListViewer h2 {
+  color: lightcoral;
+  text-shadow: 2px 2px 0px rgba(230, 21, 31, 0.22);
+}
+
+.ListViewer-topbar {
+  text-align: right;
   position: relative;
-  /* bottom: -3px; */
-  border: 4px solid lightblue;
-  border-bottom: none;
-  border-radius: 5px 5px 0 0;
-  z-index: 0;
+  width: 210px;
+  margin: 0 auto;
+}
+
+.ListViewer-topbar img {
+  cursor: pointer;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  position: absolute;
+}
+
+.ListViewer-topbar img:hover {
+  transform: rotate(180deg);
+  transition: transform 1s;
+  background: #8FD4C1;
+  border: 4px solid white;
+  border-radius: 50%;
+  left: -4px;
+  text-align: right;
+}
+
+.ListViewer input {
+  border: 2px solid #DAD2CA;
+  border-radius: 5px;
   padding: 5px;
 }
 
-.ListViewer a {
-  padding-left: 20px;
-  text-decoration: none;
-  color: blueviolet;
-  display: inline-block;
+.ListViewer input:focus {
+  outline: 0;
+  outline-offset: 0;
 }
 
-.ListViewer-item {
-  position: relative;
-  border: 3px solid lightblue;
-  border-radius: 5px;
-  margin: 0px auto;
-  width: 300px;
-  /* text-align: left; */
+.ListViewer-ol {
+  counter-reset: li;
+  list-style: none;
+  font: 14px "Trebuchet MS", "Lucida Sans";
+  padding: 0;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
+
+.ListViewer-ol li {
+  position: relative;
+}
+.ListViewer-ol a {
+  position: relative;
+  display: block;
+  padding: .4em 60px .4em 2em;
+  /*padding-right: ;*/
+  margin: .5em 0;
+  background: #DAD2CA;
+  color: #444;
+  text-decoration: none;
+  border-radius: .3em;
+  transition: .3s ease-out;
+}
+.ListViewer-ol a:hover {background: #E9E4E0;}
+.ListViewer-ol a:hover:before {transform: rotate(360deg);}
+.ListViewer-ol a:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -1.3em;
+  top: 50%;
+  margin-top: -1.3em;
+  background: #8FD4C1;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  border: .3em solid white;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+  transition: all .3s ease-out;
+}
+
+.ListViewer-loading {
+  padding: 100px 0;
+}
+
+.ListViewer-bad-query {
+  padding: 150px 0;
+}
+
+.ListViewer-bad-query p {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+@media (max-width: 800px) {
+  .ListViewer {
+    width: 90%;
+  }
+}
+
