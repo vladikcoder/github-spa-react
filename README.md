@@ -2,6 +2,6 @@
 
 Setup guide:
 
-* `npm i` развёртывание реакт окружения со всеми нужными dependencies из pakage.json
-* `npm run dev-server` запуск нод сервера на 5000 порту
-* `npm run start` запуск реакта на 3000 порту
+* `npm i` setting up the React environment with all needed dependencies from pakage.json
+* `npm run dev-server` launhing server on port 5000
+* `npm run start` launching React port 3000
